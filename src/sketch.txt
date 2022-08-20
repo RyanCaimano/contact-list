@@ -1,0 +1,63 @@
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+CONTACT LIST VIEW   /contacts
+
+-shows all contacts in a table. Each contact is a 1 x 4. Each image is clickable 
+and routes to /contact/{theUniqueId}
+
+-includes 'add contact' button that routes to /contacts/new with a form for 
+adding a new contact (all fields required, use PropTypes)
+
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+INDIVIDUAL CONTACT VIEW   /contact/{theUniqueId}
+
+-shows just that one contact. In a card, there is (1) image (2) Name (3) email (4) phone number
+-there is a 'back' button that routes back to /contacts
+
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+NEW CONTACT VIEW
+
+-a form that is hardcoded with fields: (1) full name (2) email address (3) phone number (4) image url 
+and also includes a 'submit button'
+
+    -the submit button should add the new contact to /contacts 
+                                &
+      routes back to /contacts
+
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+<h1>Contact List</h1>
+  <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Profile Picture</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+  </table>

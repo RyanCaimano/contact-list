@@ -1,10 +1,13 @@
+import { BrowserRouter} from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
-
+const App = () => (
+  <div>
+    <h1>Hello World</h1>
+  </div>
+);
 
 
 
@@ -15,7 +18,7 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-      <BrowserRouter>
+      <BrowserRouter> 
         <App />
       </BrowserRouter>
   </React.StrictMode>
