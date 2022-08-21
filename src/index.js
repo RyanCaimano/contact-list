@@ -1,6 +1,7 @@
-import { BrowserRouter, Switch, Route, Link, } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { data } from './data';
 import './index.css';
 
 
@@ -19,6 +20,7 @@ const Main = () => (
 const App = () => (
   <div>
     <h1>Contact List</h1>
+    <Main/>
     <Link to="/contacts/new">Add Contact</Link> 
     <Link to="/contacts">View All Contacts</Link>
   </div>
@@ -73,7 +75,7 @@ const AllContacts = () => (
 
 const Contacts = ({ match }) => {
   const id = match.params.id;
-  const contact = contacts.find(contact => contact.id === id);
+  const contact = data.contacts.find(contact => contact.id === id);
   return (
     <div>
       <h1>{contact.name}</h1>
