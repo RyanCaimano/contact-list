@@ -1,7 +1,8 @@
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, Link} from 'react-router-dom';
 import React, { useState } from 'react';
-import Home from './Home';
-import Contacts from './Contacts';
+import Home from '../Home';
+import Contacts from '../Contacts';
+
 
 const App = () => {
   const [contacts, setContacts] = useState([
@@ -38,8 +39,20 @@ const App = () => {
     });
   } 
 
+  let contactDisplay = contacts.map(contact => {
+    return (
+      <tr key={contact.id}>
+        <Link to={`/contacts/${contact.id}`}>
+          {contact.name}
+        </Link>
+      </tr>
+    )
+  })
+
+
 return (
   <div>
+    {contactDisplay}
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/contacts" render={() => 

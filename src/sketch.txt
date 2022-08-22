@@ -1,80 +1,131 @@
 ---------------------------------------------------------------------
 ---------------------------------------------------------------------
 
-CONTACT LIST VIEW   /contacts
+APP.JS 
 
--shows all contacts in a table. Each contact is a 1 x 4. Each image is clickable 
-and routes to /contact/{theUniqueId}
+import {Switch, Route, Link} from 'react-router-dom';
+import React, { useState } from 'react';
+import Home from './Home';
+import Contacts from './Contacts';
 
--includes 'add contact' button that routes to /contacts/new with a form for 
-adding a new contact (all fields required, use PropTypes)
+
+const App = () => {
+  const [contacts, setContacts] = useState([
+      
+    {
+      id: 42226184,
+      name: "Isaac Newton",
+      image_url: "https://en.wikipedia.org/wiki/File:Portrait_of_Sir_Isaac_Newton,_1689.jpg",
+      email: "lincolnshire@example.com",
+      phone_number: "15555555555"
+    },
+
+    {
+      id: 96436090,
+      name: "Euclid of Megara",
+      image_url: "https://en.wikipedia.org/wiki/File:Jusepe_de_Ribera_-_Euclid_-_2001.26_-_J._Paul_Getty_Museum.jpg",
+      email: "elements@example.com",
+      phone_number: "15555555555"
+    },
+
+    {
+      id: 85907747,
+      name: "Johannes Kepler",
+      image_url: "https://en.wikipedia.org/wiki/File:JKepler.jpg",
+      email: "celestial@example.com",
+      phone_number: "15555555555"
+        
+    }
+  ])
+
+  const addContact = (contact) => {
+    setContacts(contacts => {
+      return [...contacts, contact];
+    });
+  } 
+
+  let contactDisplay = contacts.map(contact => {
+    return (
+      <li key={contact.id}>
+        <Link to={`/contacts/${contact.id}`}>
+          {contact.name}
+        </Link>
+      </li>
+    )
+  })
+
+
+return (
+  <div>
+    {contactDisplay}
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/contacts" render={() => 
+        <Contacts addContact={addContact} contacts={contacts} />
+      } />
+    </Switch>
+  </div>
+  ) 
+}
+
+export default App;
 
 ---------------------------------------------------------------------
 ---------------------------------------------------------------------
-INDIVIDUAL CONTACT VIEW   /contact/{theUniqueId}
 
--shows just that one contact. In a card, there is (1) image (2) Name (3) email (4) phone number
--there is a 'back' button that routes back to /contacts
+CONTACTS.JS
+
+import data from './data';
+import {Link} from 'react-router-dom';
+
+const Contacts = () => {
+  data.contacts.map(contact => (
+    <li key={contact.id}>
+      <Link to={`/contacts/:${contact.id}`}>
+        {contact.name}
+      </Link>
+    </li>
+  ));
+}
+
+export default Contacts;
+          
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+NEWCONTACT.JS
+
+import {Link} from 'react-router-dom';
+
+const NewContact = () => (
+  <div>
+    <h1>New Contact</h1>
+    <form>
+      <input type="text" placeholder="Full Name" />
+      <input type="text" placeholder="Email address" />
+      <input type="text" placeholder="Phone Number" />
+      <input type="url" placeholder="Image URL" />
+      <button>
+        <Link to="/contacts">Add Contact</Link>
+      </button>
+    </form>
+  </div>
+);
+
+export default NewContact;
 
 ---------------------------------------------------------------------
 ---------------------------------------------------------------------
 
-NEW CONTACT VIEW
+HOME.JS
 
--a form that is hardcoded with fields: (1) full name (2) email address (3) phone number (4) image url 
-and also includes a 'submit button'
+const Home = () => (
+  <div>
+    <h1>Contact List</h1>
+  </div>
+)
 
-    -the submit button should add the new contact to /contacts 
-                                &
-      routes back to /contacts
+export default Home;
 
 ---------------------------------------------------------------------
 ---------------------------------------------------------------------
-
-<h1>Contact List</h1>
-  <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">Profile Picture</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone Number</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row"></th>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row"></th>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row"></th>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-  </table>
-
-
-***
-
-const Contacts = ({ match }) => {
-//   const id = match.params.id;
-//   const contact = data.contacts.find(contact => contact.id === id);
-//   return (
-//     <div>
-//       <h1>{contact.name}</h1>
-//       <h2>{contact.email}</h2>
-//       <h2>{contact.phone}</h2>
-//       <img src={contact.image} alt="this is what your contact looks like"/>
-//       <Link to="/contacts">Back</Link>
-//     </div>
-//   );
-// }
