@@ -1,6 +1,6 @@
-import {Link} from 'react-router-dom';
-import Contacts from './Contacts';
-import NewContact from './NewContact';
+// import {Link} from 'react-router-dom';
+// import Contacts from './Contacts';
+// import NewContact from './NewContact';
 
 // const AllContacts = () => (
 //   <div>
@@ -33,4 +33,4 @@ import NewContact from './NewContact';
 //   </div>
 // );
 
-export default AllContacts;
+// export default AllContacts;

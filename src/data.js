@@ -1,4 +1,4 @@
-export const data =  
+const data =  
   {
     "contacts": [
     {
@@ -25,7 +25,9 @@ export const data =
       "phone_number": "15555555555"
         
     }
-    
-    ]
+  ]
 }
+
+export default data;
+
   
